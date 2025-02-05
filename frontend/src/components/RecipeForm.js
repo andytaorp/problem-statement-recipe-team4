@@ -24,13 +24,8 @@ const RecipeForm = () => {
 
         const recipe = { name, ingredients, instructions, prepTime, difficulty };
 
-<<<<<<< HEAD
-        const response = await fetch('${process.env.REACT_APP_API_URL}/api/recipes', {
-            method: 'POST',
-=======
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes`, {
             method: "POST",
->>>>>>> 5d52e356a7c7ebffe7574d47c2903a2978a999c8
             body: JSON.stringify(recipe),
             headers: {
                 "Content-Type": "application/json",
