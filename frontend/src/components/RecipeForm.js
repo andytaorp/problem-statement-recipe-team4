@@ -24,7 +24,7 @@ const RecipeForm = () => {
 
         const recipe = { name, ingredients, instructions,time,level }
 
-        const response = await fetch('/api/recipes', {
+        const response = await fetch('${process.env.REACT_APP_API_URL}/api/recipes', {
             method: 'POST',
             body: JSON.stringify(recipe),
             headers: {
