@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRecipeContext } from "../hooks/useRecipeContext"
 import { useAuthContext } from '../hooks/useAuthContext'
 
-const WorkoutForm = () => {
+const RecipeForm = () => {
     const { dispatch } = useRecipeContext()
     const { user } = useAuthContext()
 
