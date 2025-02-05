@@ -12,6 +12,10 @@ export const recipeReducer = (state, action) => {
       return {
         recipe: [action.payload, ...state.recipe]
       }
+    case 'UPDATE_RECIPES':
+        return {
+          recipe: state.recipe.map((w) => w._id === action.payload._id ? action.payload : w)
+        }  
     case 'DELETE_RECIPES':
       return {
         recipe: state.recipe.filter((w) => w._id !== action.payload._id)

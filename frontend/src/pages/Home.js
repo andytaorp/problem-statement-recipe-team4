@@ -3,11 +3,11 @@ import { useRecipeContext } from "../hooks/useRecipeContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 // components
-import WorkoutDetails from '../components/WorkoutDetails'
-import recipeForm from '../components/WorkoutForm'
+import RecipeDetails from '../components/RecipeDetails'
+import RecipeForm from '../components/RecipeForm'
 
 const Home = () => {
-  const {recipe, dispatch} = useRecipeContext()
+  const {recipes, dispatch} = useRecipeContext()
   const {user} = useAuthContext()
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
           <RecipeDetails key={recipe._id} recipe={recipe} />
         ))}
       </div>
-      <RecipeDetails />
+      <RecipeForm />
     </div>
   )
 }
