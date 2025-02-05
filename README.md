@@ -3,6 +3,6 @@
 
 shannon: pages
 ervian: hooks , context
-charmaine:coponents
+charmaine:components
 
 Luke and Eden : backend
