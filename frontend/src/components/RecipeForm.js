@@ -9,46 +9,58 @@ const RecipeForm = () => {
     const [name, setName] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [instructions, setInstructions] = useState('')
-    const [time, setTime] = useState('')
-    const [level, setLevel] = useState('')
+    const [prepTime, setPrepTime] = useState('')
+    const [difficulty, setDifficulty] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (!user) {
-            setError('You must be logged in')
-            return
+            setError("You must be logged in");
+            return;
         }
 
-        const recipe = { name, ingredients, instructions,time,level }
+        const recipe = { name, ingredients, instructions, prepTime, difficulty };
 
+<<<<<<< HEAD
         const response = await fetch('${process.env.REACT_APP_API_URL}/api/recipes', {
             method: 'POST',
+=======
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes`, {
+            method: "POST",
+>>>>>>> 5d52e356a7c7ebffe7574d47c2903a2978a999c8
             body: JSON.stringify(recipe),
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user.token}`
-            }
-        })
-        const json = await response.json()
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`,
+            },
+        });
+
+        const json = await response.json();
+        console.log(json); // 🔥 Log the response from backend
 
         if (!response.ok) {
-            setError(json.error)
-            setEmptyFields(json.emptyFields)
+            console.log("Error from backend:", json); // Log the error for debugging
+            console.log("Empty fields:", json.emptyFields); // 🔍 Log empty fields
+            setError(json.error);
+            setEmptyFields(json.emptyFields || []); // Ensure it's an array
         }
+
         if (response.ok) {
-            setName('')
-            setIngredients('')
-            setInstructions('')
-            setTime('')
-            setLevel('')
-            setError(null)
-            setEmptyFields([])
-            dispatch({ type: 'CREATE_RECIPE', payload: json })
+            setName("");
+            setIngredients("");
+            setInstructions("");
+            setPrepTime("");
+            setDifficulty("");
+            setError(null);
+            setEmptyFields([]);
+            dispatch({ type: "CREATE_RECIPE", payload: json });
         }
-    }
+        console.log("Dispatching new recipe:", json);
+        dispatch({ type: "CREATE_RECIPE", payload: json });
+    };
 
     return (
         <form className="create" onSubmit={handleSubmit}>
@@ -81,21 +93,21 @@ const RecipeForm = () => {
             <label>Preparation Time:</label>
             <input
                 type="text"
-                onChange={(e) => setTime(e.target.value)}
-                value={time}
+                onChange={(e) => setPrepTime(e.target.value)}
+                value={prepTime}
                 className={emptyFields.includes('time') ? 'error' : ''}
             />
 
             <label>Difficulty level:</label>
             <select
-                onChange={(e) => setLevel(e.target.value)}
-                value={level}
-                className={emptyFields.includes('level') ? 'error' : ''}
+                onChange={(e) => setDifficulty(e.target.value)}
+                value={difficulty}
+                className={emptyFields.includes('difficulty') ? 'error' : ''}
             >
                 <option value="">Select difficulty</option>
-                <option value="Easy">Easy</option>
-                <option value="Medium">Medium</option>
-                <option value="Hard">Hard</option>
+                <option value="easy">Easy</option>  {/* Change value to lowercase */}
+                <option value="medium">Medium</option>  {/* Change value to lowercase */}
+                <option value="hard">Hard</option>  {/* Change value to lowercase */}
             </select>
 
 
@@ -103,6 +115,7 @@ const RecipeForm = () => {
 
             <button>Add Recipe</button>
             {error && <div className="error">{error}</div>}
+
         </form>
     )
 }
