@@ -19,7 +19,14 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.13.0",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f80b365434f51c97b3040ef7e6f08b552b6b54a0
     "mongoose": "^8.9.5",
+=======
+    "mongoose": "^8.9.7",
+>>>>>>> 554ff6b73fd1be6ae4fcaf945b6d2b9245044ffb
     "validator": "^13.12.0"
   }
 }
