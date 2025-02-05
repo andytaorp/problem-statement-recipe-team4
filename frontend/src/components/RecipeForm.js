@@ -26,7 +26,7 @@ const RecipeForm = () => {
 
         const response = await fetch('/api/recipes', {
             method: 'POST',
-            body: JSON.stringify(workout),
+            body: JSON.stringify(recipe),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`
