@@ -1,38 +1,40 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer } from 'react';
 
-export const RecipeContext = createContext()
+export const RecipeContext = createContext();
 
 export const recipeReducer = (state, action) => {
   switch (action.type) {
     case 'SET_RECIPES': 
       return {
-        recipe: action.payload
-      }
-    case 'CREATE_RECIPES':
+        recipes: action.payload // ✅ Use "recipes" instead of "recipe"
+      };
+    case 'CREATE_RECIPE': // ✅ Fix action type
       return {
-        recipe: [action.payload, ...state.recipe]
-      }
-    case 'UPDATE_RECIPES':
-        return {
-          recipe: state.recipe.map((w) => w._id === action.payload._id ? action.payload : w)
-        }  
-    case 'DELETE_RECIPES':
+        recipes: [action.payload, ...state.recipes] // ✅ Use "recipes"
+      };
+    case 'UPDATE_RECIPE':
       return {
-        recipe: state.recipe.filter((w) => w._id !== action.payload._id)
-      }
+        recipes: state.recipes.map((r) => 
+          r._id === action.payload._id ? action.payload : r
+        )
+      };  
+    case 'DELETE_RECIPE':
+      return {
+        recipes: state.recipes.filter((r) => r._id !== action.payload._id)
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const RecipeContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(recipeReducer, {
-    recipe: null
-  })
+    recipes: [] // ✅ Use array instead of null
+  });
 
   return (
-    <RecipeContext.Provider value={{...state, dispatch}}>
+    <RecipeContext.Provider value={{ ...state, dispatch }}>
       { children }
     </RecipeContext.Provider>
-  )
-}
+  );
+};
