@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 
 dotenv.config();
+console.log("JWT_SECRET:", process.env.JWT_SECRET); // Debugging
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(cors());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/recipes", recipeRoutes);
+
 
 const PORT = process.env.PORT || 4000;
 mongoose
