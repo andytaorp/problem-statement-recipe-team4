@@ -19,6 +19,7 @@ const Home = () => {
 
       if (response.ok) {
         dispatch({ type: 'SET_RECIPES', payload: json })
+        console.log('Fetched recipes:', json); // 🔍 Log fetched recipes
       }
     }
 
