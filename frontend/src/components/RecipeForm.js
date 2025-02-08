@@ -51,10 +51,10 @@ const RecipeForm = () => {
             setDifficulty("");
             setError(null);
             setEmptyFields([]);
+            console.log("Dispatching new recipe:", json);
             dispatch({ type: "CREATE_RECIPE", payload: json });
         }
-        console.log("Dispatching new recipe:", json);
-        dispatch({ type: "CREATE_RECIPE", payload: json });
+        
     };
 
     return (

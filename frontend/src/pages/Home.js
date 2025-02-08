@@ -12,13 +12,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const response = await fetch('/api/recipe', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recipes`, {
         headers: {'Authorization': `Bearer ${user.token}`},
       })
       const json = await response.json()
 
       if (response.ok) {
-        dispatch({type: 'SET_RECIPE', payload: json})
+        dispatch({type: 'SET_RECIPES', payload: json})
       }
     }
 
