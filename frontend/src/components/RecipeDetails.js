@@ -31,8 +31,8 @@ const RecipeDetails = ({ recipe }) => {
       <h4>{recipe.name}</h4>
       <p><strong>Ingredients: </strong>{recipe.ingredients}</p>
       <p><strong>Cooking Instructions: </strong>{recipe.instructions}</p>
-      <p><strong>Preparation Time: </strong>{recipe.time}</p>
-      <p><strong>Difficulty level: </strong>{recipe.level}</p>
+      <p><strong>Preparation Time: </strong>{recipe.prepTime}</p>
+      <p><strong>Difficulty level: </strong>{recipe.difficulty}</p>
       <p>{formatDistanceToNow(new Date(recipe.createdAt), { addSuffix: true })}</p>
       <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
     </div>
