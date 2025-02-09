@@ -62,7 +62,7 @@ const RecipeDetails = ({ recipe }) => {
       setIsEditing(false); // Exit edit mode
     } else {
       console.error('Failed to update recipe:', json.error);
-    } 
+    }
   }
   return (
     <div className="recipe-details">
@@ -97,6 +97,7 @@ const RecipeDetails = ({ recipe }) => {
             placeholder="Prep Time"
           />
           <p>Difficulty Level:</p>
+
           <select
             onChange={(e) => setEditDifficulty(e.target.value)}
             value={editDifficulty}
@@ -106,10 +107,14 @@ const RecipeDetails = ({ recipe }) => {
             <option value="medium">Medium</option>  {/* Change value to lowercase */}
             <option value="hard">Hard</option>  {/* Change value to lowercase */}
           </select>
-          <button onClick={handleUpdate} className="savebutton">Save</button>
-          <button onClick={() => setIsEditing(false)} className="cancelbutton">Cancel</button>
+          <div style={{marginTop: '10px'}}>
+            <button onClick={handleUpdate} className="savebutton">Save</button>
+            <button onClick={() => setIsEditing(false)} className="cancelbutton">Cancel</button>
+          </div>
+
+
         </div>
-      ): (
+      ) : (
         <div>
           <h4>{recipe.name}</h4>
           <p><strong>Ingredients: </strong>{recipe.ingredients}</p>

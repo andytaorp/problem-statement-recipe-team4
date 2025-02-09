@@ -54,7 +54,7 @@ const RecipeForm = () => {
             console.log("Dispatching new recipe:", json);
             dispatch({ type: "CREATE_RECIPE", payload: json });
         }
-        
+
     };
 
     return (
@@ -94,21 +94,20 @@ const RecipeForm = () => {
             />
 
             <label>Difficulty level:</label>
-            <select
-                onChange={(e) => setDifficulty(e.target.value)}
-                value={difficulty}
-                className={emptyFields.includes('difficulty') ? 'error' : ''}
-            >
-                <option value="">Select difficulty</option>
-                <option value="easy">Easy</option>  {/* Change value to lowercase */}
-                <option value="medium">Medium</option>  {/* Change value to lowercase */}
-                <option value="hard">Hard</option>  {/* Change value to lowercase */}
-            </select>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <select
+                    onChange={(e) => setDifficulty(e.target.value)}
+                    value={difficulty}
+                    className={emptyFields.includes("difficulty") ? "error" : ""}
+                >
+                    <option value="">Select difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
 
-
-
-
-            <button>Add Recipe</button>
+                <button className="recipebutton">Add Recipe</button>
+            </div>
             {error && <div className="error">{error}</div>}
 
         </form>

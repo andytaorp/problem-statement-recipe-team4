@@ -52,7 +52,7 @@ const LogMealUploader = () => {
                 {preview && <img src={preview} alt="Uploaded Preview" style={{ width: "200px", marginTop: "10px" }} />}
                 <br />
                 <br />
-                <button type="submit">Analyze Food</button>
+                <button className="analyzebutton" type="submit">Analyze Food</button>
             </form>
 
             {error && <p style={{ color: "red" }}>{error}</p>}

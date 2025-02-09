@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #a94598;
+  --primary: #5a5671;
   --error: #e7195a;
 }
 body {
@@ -127,4 +127,82 @@ form.signup, form.login {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+
+/* ===================== */
+.editbutton {
+  background-color: #4967c1;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+.editbutton:hover {
+  background-color: #3a4f9c;
+}
+
+.savebutton {
+  background-color: #1c837a;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+.savebutton:hover{
+  background-color: #0f5a52;
+}
+
+.cancelbutton {
+  background-color: #fe6a6d;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cancelbutton:hover{
+  background-color: #e74b4e;
+}
+
+.logmealbutton {
+  margin-right: 10px;
+  background-color: #dacaff;
+}
+.logmealbutton:hover {
+  background-color: #b8a0ff;
+}
+
+
+.logoutbutton {
+  background-color: #f9afaf;
+}
+.logoutbutton:hover {
+  background-color: #e88f8f;
+}
+
+.recipebutton {
+  background-color: #1a857d;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+.recipebutton:hover{
+  background-color: #0f5a52;
+}
+
+.analyzebutton {
+  background-color: #4967c1;
+}
+
+.analyzebutton:hover {
+  background-color: #3a4f9c;
 }
