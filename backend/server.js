@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
+const logmealRoutes = require("./routes/logmealRoutes");
+
 
 dotenv.config();
 console.log("JWT_SECRET:", process.env.JWT_SECRET); // Debugging
@@ -17,6 +19,8 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/recipes", recipeRoutes);
 
+// Use the LogMeal route
+app.use("/api/logmeal", logmealRoutes);
 
 const PORT = process.env.PORT || 4000;
 mongoose
