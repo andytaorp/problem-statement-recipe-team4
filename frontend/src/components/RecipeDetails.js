@@ -123,7 +123,7 @@ const RecipeDetails = ({ recipe }) => {
           <p><strong>Difficulty level: </strong>{recipe.difficulty}</p>
           <p>{formatDistanceToNow(new Date(recipe.createdAt), { addSuffix: true })}</p>
           <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
-          <span className="material-symbols-outlined" onClick={() => setIsEditing(true)} style={{ marginRight: "50px" }}>edit</span>
+          <span className="material-symbols-outlined" onClick={() => setIsEditing(true)} style={{ marginRight: "55px" }}>edit</span>
           
         </div>
       )}

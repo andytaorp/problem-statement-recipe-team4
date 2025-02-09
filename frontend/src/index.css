@@ -205,5 +205,15 @@ form.signup, form.login {
 }
 
 .analyzebutton:hover {
-  background-color: #3a4f9c;
+  background-color: #4a65ca;
+}
+
+.material-symbols-outlined {
+  transition: all 0.2s ease-in-out; /* Smooth transition */
+}
+
+.material-symbols-outlined:hover {
+  background-color: #4f49c1; /* Your original hover effect */
+  transform: scale(1.1); /* Slightly enlarges the icon */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
 }
