@@ -2,11 +2,16 @@ import { useState } from "react";
 
 const LogMealUploader = () => {
     const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState(null); // Store preview URL
     const [result, setResult] = useState(null);
     const [error, setError] = useState("");
 
     const handleImageUpload = (event) => {
-        setImage(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            setImage(file);
+            setPreview(URL.createObjectURL(file)); // Generate a preview URL
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -20,7 +25,7 @@ const LogMealUploader = () => {
         formData.append("image", image);
 
         try {
-            const response = await fetch("http://localhost:4000/api/logmeal/detect", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/logmeal/detect`, {
                 method: "POST",
                 body: formData,
             });
@@ -42,6 +47,9 @@ const LogMealUploader = () => {
             <h2>Upload Food Image</h2>
             <form onSubmit={handleSubmit}>
                 <input type="file" accept="image/*" onChange={handleImageUpload} />
+                {preview && <img src={preview} alt="Uploaded Preview" style={{ width: "200px", marginTop: "10px" }} />}
+                <br></br>
+                <br></br>
                 <button type="submit">Analyze Food</button>
             </form>
 
@@ -49,8 +57,18 @@ const LogMealUploader = () => {
 
             {result && (
                 <div>
-                    <h3>Detected Food</h3>
-                    <pre>{JSON.stringify(result, null, 2)}</pre>
+                    <h3>Detected Food:</h3>
+                    <p><strong>Best Match:</strong> {result.recognition_results[0].name}</p>
+                    <p><strong>Confidence:</strong> {(result.recognition_results[0].prob * 100).toFixed(2)}%</p>
+
+                    <h4>Possible Alternatives:</h4>
+                    <ul>
+                        {result.recognition_results.slice(1, 5).map((food, index) => (
+                            <li key={index}>
+                                {food.name} - {(food.prob * 100).toFixed(2)}%
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>

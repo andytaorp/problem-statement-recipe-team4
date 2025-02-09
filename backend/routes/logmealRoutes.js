@@ -18,13 +18,15 @@ router.post("/detect", upload.single("image"), async (req, res) => {
       return res.status(400).json({ error: "No image file provided" });
     }
 
+    console.log("Using LogMeal API Key:", process.env.LOGMEAL_API_KEY);
+
     const formData = new FormData();
     formData.append("image", req.file.buffer, {
       filename: "image.jpg",
       contentType: "image/jpeg", // Change based on image type
     });
 
-    const response = await fetch("https://api.logmeal.es/v2/recognition/dish", {
+    const response = await fetch("https://api.logmeal.es/v2/image/recognition/complete", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.LOGMEAL_API_KEY}`,
@@ -33,6 +35,7 @@ router.post("/detect", upload.single("image"), async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("LogMeal API Response:", data);
     res.json(data);
   } catch (error) {
     console.error("Error processing image:", error);
