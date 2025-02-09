@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const LogMealUploader = () => {
     const [image, setImage] = useState(null);
-    const [preview, setPreview] = useState(null); // Store preview URL
+    const [preview, setPreview] = useState(null);
     const [result, setResult] = useState(null);
     const [error, setError] = useState("");
 
@@ -10,7 +10,7 @@ const LogMealUploader = () => {
         const file = event.target.files[0];
         if (file) {
             setImage(file);
-            setPreview(URL.createObjectURL(file)); // Generate a preview URL
+            setPreview(URL.createObjectURL(file));
         }
     };
 
@@ -31,6 +31,8 @@ const LogMealUploader = () => {
             });
 
             const data = await response.json();
+            console.log("LogMeal API Response:", data); // Debugging log
+
             if (response.ok) {
                 setResult(data);
                 setError("");
@@ -48,18 +50,18 @@ const LogMealUploader = () => {
             <form onSubmit={handleSubmit}>
                 <input type="file" accept="image/*" onChange={handleImageUpload} />
                 {preview && <img src={preview} alt="Uploaded Preview" style={{ width: "200px", marginTop: "10px" }} />}
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 <button type="submit">Analyze Food</button>
             </form>
 
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            {result && (
+            {result && result.recognition_results && result.recognition_results.length > 0 ? (
                 <div>
                     <h3>Detected Food:</h3>
-                    <p><strong>Best Match:</strong> {result.recognition_results[0].name}</p>
-                    <p><strong>Confidence:</strong> {(result.recognition_results[0].prob * 100).toFixed(2)}%</p>
+                    <p><strong>Best Match:</strong> {result.recognition_results[0]?.name || "Unknown"}</p>
+                    <p><strong>Confidence:</strong> {(result.recognition_results[0]?.prob * 100).toFixed(2)}%</p>
 
                     <h4>Possible Alternatives:</h4>
                     <ul>
@@ -70,6 +72,8 @@ const LogMealUploader = () => {
                         ))}
                     </ul>
                 </div>
+            ) : (
+                result && <p>No food detected. Try uploading a different image.</p>
             )}
         </div>
     );
