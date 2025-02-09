@@ -152,6 +152,7 @@ form.signup, form.login {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 10px;
 }
 .savebutton:hover{
   background-color: #0f5a52;
